@@ -1,0 +1,10 @@
+# The spine is yours. The builder owns only the surface.
+# Replace @you with your GitHub handle.
+
+/app/(spine)/   @you
+/lib/           @you
+/db/            @you
+/ci/            @you
+/app/globals.css @you
+/app/layout.tsx  @you
+/.github/        @you

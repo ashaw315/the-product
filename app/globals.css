@@ -1,0 +1,218 @@
+/* the product — visual identity
+   flat, saturated, declarative. no shadows, no gradients, no rounded corners.
+   color is used in full-bleed blocks. type is used at extremes.
+   Ellsworth Kelly grounds, Barbara Kruger confidence, Lawrence Weiner declaration. */
+
+:root {
+  --paper: #faf9f5;
+  --ink: #16140f;
+  --ink-30: rgba(22, 20, 15, 0.3);
+  --ink-12: rgba(22, 20, 15, 0.12);
+
+  --red: #f0381a;
+  --blue: #1f3fd6;
+  --yellow: #ffc400;
+  --green: #109a52;
+
+  --rule: 1.5px solid var(--ink);
+  --gutter: clamp(1rem, 4vw, 3rem);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body), "Helvetica Neue", Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "kern" 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---- type ---- */
+
+.declarative {
+  font-family: var(--font-display), "Helvetica Neue", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+  font-size: clamp(2.5rem, 9vw, 7rem);
+}
+
+.heading {
+  font-family: var(--font-display), "Helvetica Neue", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  font-size: clamp(1.4rem, 3vw, 2.25rem);
+}
+
+.label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ink-30);
+}
+
+.mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-feature-settings: "tnum" 1;
+}
+
+.prose {
+  max-width: 64ch;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+/* ---- structure ---- */
+
+.frame {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 1rem var(--gutter);
+  border-bottom: var(--rule);
+  flex-wrap: wrap;
+}
+
+.nav .brand {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-right: auto;
+}
+
+.nav a {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-30);
+}
+
+.nav a:hover {
+  color: var(--ink);
+}
+
+.pad {
+  padding: var(--gutter);
+  flex: 1;
+}
+
+.rule-top {
+  border-top: var(--rule);
+}
+
+.foot {
+  padding: 0.9rem var(--gutter);
+  border-top: var(--rule);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-30);
+}
+
+/* ---- color blocks ---- */
+
+.block {
+  padding: clamp(1.5rem, 4vw, 3rem);
+  color: var(--paper);
+}
+.block-red {
+  background: var(--red);
+}
+.block-blue {
+  background: var(--blue);
+}
+.block-yellow {
+  background: var(--yellow);
+  color: var(--ink);
+}
+.block-green {
+  background: var(--green);
+}
+
+/* ---- metric cards ---- */
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0;
+  border-left: var(--rule);
+  border-top: var(--rule);
+}
+
+.metric {
+  border-right: var(--rule);
+  border-bottom: var(--rule);
+  padding: 1.5rem;
+  min-height: 9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.metric .value {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* ---- lists ---- */
+
+.stack > * {
+  border-bottom: 1px solid var(--ink-12);
+  padding: 1.1rem 0;
+}
+.stack > *:first-child {
+  border-top: 1px solid var(--ink-12);
+}
+
+.scroll-list {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: var(--ink-30);
+  columns: 2;
+  column-gap: 3rem;
+}
+.scroll-list .ok {
+  color: var(--green);
+}
+
+/* one quiet entrance. nothing else moves. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
