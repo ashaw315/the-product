@@ -1,4 +1,5 @@
 import { getSprintList } from "@/lib/spine";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -21,7 +22,7 @@ export default async function Specs() {
             <span className="mono label" style={{ minWidth: "4rem" }}>
               SP-{s.number}
             </span>
-            <a href={`/specs/${s.number}`} style={{ fontWeight: 500 }}>
+            <Link href={`/specs/${s.number}`} style={{ fontWeight: 500 }}>
               {s.title}
               {s.pm_name ? (
                 <span style={{ color: "var(--ink-30)", fontWeight: 400 }}>
@@ -29,7 +30,7 @@ export default async function Specs() {
                   — {s.pm_name}
                 </span>
               ) : null}
-            </a>
+            </Link>
           </div>
         ))}
       </div>

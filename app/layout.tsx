@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Archivo, Spline_Sans_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -35,13 +36,13 @@ export default function RootLayout({
       <body className={`${display.variable} ${body.variable} ${mono.variable}`}>
         <div className="frame">
           <nav className="nav">
-            <a href="/" className="brand">
+            <Link href="/" className="brand">
               the product
-            </a>
-            <a href="/changelog">changelog</a>
-            <a href="/roadmap">roadmap</a>
-            <a href="/org">the org</a>
-            <a href="/status">status</a>
+            </Link>
+            <Link href="/changelog">changelog</Link>
+            <Link href="/roadmap">roadmap</Link>
+            <Link href="/org">the org</Link>
+            <Link href="/status">status</Link>
           </nav>
           {children}
           <footer className="foot">

@@ -1,4 +1,5 @@
 import { getRoadmap } from "@/lib/spine";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -25,9 +26,9 @@ export default async function Roadmap() {
               SP-{it.number}
             </span>
             <span>
-              <a href={`/specs/${it.number}`} style={{ fontWeight: 500 }}>
+              <Link href={`/specs/${it.number}`} style={{ fontWeight: 500 }}>
                 {it.title}
-              </a>
+              </Link>
               <p style={{ color: "var(--ink-30)", marginTop: "0.25rem" }}>
                 {it.vision}
               </p>
