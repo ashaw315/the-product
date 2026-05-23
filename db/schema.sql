@@ -10,6 +10,7 @@ create table if not exists sprints (
   prd             jsonb,        -- {title, vision_statement, problem_statement, proposed_solution, success_metrics[], non_goals[]}
   standup_notes   text,
   release_notes   text,         -- release notes authored for the PREVIOUS sprint
+  user_research   text,         -- the user's own words about the product this sprint
   created_at      timestamptz not null default now()
 );
 

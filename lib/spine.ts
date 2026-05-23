@@ -76,3 +76,14 @@ export async function getTestNames() {
     limit 1000
   `;
 }
+
+// /research — the user's own words over time, oldest first so the arc reads
+// top to bottom: curiosity giving way, slowly, to fatigue.
+export async function getResearch() {
+  return sql`
+    select number, user_research, created_at
+    from sprints
+    where number > 0 and user_research is not null
+    order by number asc
+  `;
+}
