@@ -1,5 +1,6 @@
 import { getSpec } from "@/lib/spine";
 import { notFound } from "next/navigation";
+import Mermaid from "../../_components/Mermaid";
 
 export const dynamic = "force-dynamic";
 
@@ -10,6 +11,8 @@ type Prd = {
   proposed_solution: string | null;
   success_metrics: string[] | null;
   non_goals: string[] | null;
+  diagram: string | null;
+  diagram_caption: string | null;
 };
 
 type Ticket = {
@@ -82,6 +85,17 @@ export default async function Spec({
           </>
         ) : null}
       </section>
+
+      {prd.diagram ? (
+        <section className="rise" style={{ marginTop: "3rem" }}>
+          <Mermaid chart={prd.diagram} />
+          {prd.diagram_caption ? (
+            <p className="label" style={{ marginTop: "0.25rem" }}>
+              {prd.diagram_caption}
+            </p>
+          ) : null}
+        </section>
+      ) : null}
 
       {spec.tickets?.length ? (
         <section className="rise" style={{ marginTop: "3rem" }}>
