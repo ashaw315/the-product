@@ -87,3 +87,12 @@ export async function getResearch() {
     order by number asc
   `;
 }
+
+// /evolution — every captured page state, newest sprint first.
+export async function getCaptures() {
+  return sql`
+    select sprint_number, page, image_url, captured_at
+    from captures
+    order by sprint_number desc, page asc
+  `;
+}

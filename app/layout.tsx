@@ -42,6 +42,7 @@ export default function RootLayout({
             <Link href="/changelog">changelog</Link>
             <Link href="/roadmap">roadmap</Link>
             <Link href="/research">research</Link>
+            <Link href="/evolution">evolution</Link>
             <Link href="/org">the org</Link>
             <Link href="/status">status</Link>
           </nav>

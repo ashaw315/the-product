@@ -48,3 +48,12 @@ create table if not exists tests (
   name            text not null,
   passing         boolean not null default true
 );
+
+-- the evolution archive. one row per page captured per sprint.
+create table if not exists captures (
+  id              serial primary key,
+  sprint_number   integer not null,
+  page            text not null,        -- route, e.g. '/', '/changelog'
+  image_url       text not null,
+  captured_at     timestamptz not null default now()
+);
