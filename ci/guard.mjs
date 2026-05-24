@@ -3,7 +3,7 @@
 // app/(spine)/ or lib/. This guard fails CI if a diff reaches them.
 import { execSync } from "node:child_process";
 
-const PROTECTED = [/^app\/\(spine\)\//, /^lib\//, /^db\//, /^ci\//, /^app\/globals\.css$/, /^app\/layout\.tsx$/];
+const PROTECTED = [/^app\/\(spine\)\//, /^lib\//, /^db\//, /^ci\//, /^\.github\//, /^app\/globals\.css$/, /^app\/layout\.tsx$/];
 
 const base = process.env.GITHUB_BASE_REF || "main";
 

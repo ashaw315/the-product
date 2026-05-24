@@ -1,0 +1,38 @@
+name: ci
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    env:
+      # Dummy: the product's routes are force-dynamic (no DB at build time) and
+      # tests mock the metric functions, so no real database is needed in CI.
+      # This only satisfies db.ts's "is it set?" guard.
+      DATABASE_URL: postgres://ci:ci@localhost:5432/ci
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history so the spine guard can diff against main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci || npm install
+
+      # Cheapest checks first — fail fast.
+      - name: Spine guard
+        run: npm run guard
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm test
