@@ -35,10 +35,27 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           prompt: ${{ steps.fetch.outputs.prompt }}
-          # Defaults to Sonnet. To use Opus on a hard sprint: model: claude-opus-4-7
+          model: claude-sonnet-4-6 # ~5x cheaper than Opus; plenty for these features
+          # bypass = hands-off in CI (no human to approve prompts). Safe here:
+          # isolated runner, and the CI guard still blocks spine/lib edits on the PR.
+          claude_args: "--permission-mode bypassPermissions"
+
+      # A run that completes but pushes no branch built nothing. Treat that as a
+      # failure (so it stays red and retries) instead of silently marking it built.
+      - name: Confirm the builder pushed a PR branch
+        id: verify
+        if: steps.fetch.outputs.sprint != ''
+        run: |
+          branch="sprint-${{ steps.fetch.outputs.sprint }}-build"
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+            echo "Found $branch — the agent produced a PR branch."
+          else
+            echo "No $branch on origin — the agent did not open a PR. Failing so it retries."
+            exit 1
+          fi
 
       - name: Mark the sprint built
-        if: steps.fetch.outputs.sprint != '' && success()
+        if: steps.fetch.outputs.sprint != '' && steps.verify.outcome == 'success'
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: node .github/scripts/mark-built.mjs ${{ steps.fetch.outputs.sprint }}
