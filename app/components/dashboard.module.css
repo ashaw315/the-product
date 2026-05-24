@@ -1,0 +1,215 @@
+/* component-scoped styles for the dashboard surface.
+   global tokens (--ink, --paper, accents) come from app/globals.css. */
+
+.heroSection {
+  padding-bottom: 2rem;
+  border-bottom: 1.5px solid var(--ink);
+  margin-top: 1.5rem;
+}
+
+.northStarLabel {
+  margin-bottom: 0.75rem;
+}
+
+.northStarValue {
+  font-family: var(--font-display), "Helvetica Neue", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+  font-size: clamp(2rem, 9vw, 7rem);
+}
+
+@media (min-width: 1024px) {
+  .northStarValue {
+    font-size: clamp(3rem, 9vw, 7rem);
+  }
+}
+
+.northStarDescriptor {
+  margin-top: 1rem;
+  max-width: 56ch;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink-30);
+}
+
+.heroSubRow {
+  display: flex;
+  flex-direction: row;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin-top: 1.75rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .heroSubRow {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+}
+
+.heroSubItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.heroSubValue {
+  font-family: var(--font-display), "Helvetica Neue", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-size: clamp(1.25rem, 2.5vw, 2.25rem);
+}
+
+@media (min-width: 1024px) {
+  .heroSubValue {
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  }
+}
+
+.tileGrid {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-left: 1.5px solid var(--ink);
+  border-top: 1.5px solid var(--ink);
+}
+
+@media (min-width: 641px) and (max-width: 1023px) {
+  .tileGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .tileGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.tile {
+  border-right: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  padding: 1.4rem 1.5rem;
+  min-height: 8.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: transparent;
+}
+
+.tileLabel {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ink-30);
+}
+
+.tileValue {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+}
+
+@media (min-width: 1024px) {
+  .tileValue {
+    font-size: clamp(1.2rem, 1.4vw, 1.4rem);
+  }
+}
+
+.tileDescriptor {
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-30);
+}
+
+.tileEngagement {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+.tileEngagement .tileLabel,
+.tileEngagement .tileDescriptor {
+  color: var(--ink);
+}
+
+.velocityPanel {
+  margin-top: 3rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1.5px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.velocityHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.velocitySubheader {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-30);
+}
+
+.velocityRow {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  flex-wrap: wrap;
+}
+
+.velocityCurrent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.velocityValue {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.velocityDelta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  padding: 0.4rem 0.75rem;
+  border: 1.5px solid currentColor;
+}
+
+.deltaUp {
+  color: var(--green);
+}
+
+.deltaFlat {
+  color: var(--ink-30);
+}
+
+.deltaDown {
+  color: var(--red);
+}
+
+@media (max-width: 640px) {
+  .velocityRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+}
