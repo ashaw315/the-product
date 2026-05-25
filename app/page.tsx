@@ -1,48 +1,75 @@
 import { getAllMetrics, getUser } from "@/lib/product-metrics";
+import { DashboardHero } from "./components/DashboardHero";
+import { MetricTile } from "./components/MetricTile";
+import { VelocityPanel } from "./components/VelocityPanel";
+import styles from "./components/dashboard.module.css";
 
 export const dynamic = "force-dynamic";
 
 const fmt = (n: number) =>
   n >= 1000 ? n.toLocaleString("en-US") : String(n);
 
+const PRIOR_SPRINT_VELOCITY = 0;
+
 export default async function Surface() {
   const user = getUser();
   const m = await getAllMetrics();
-
-  const cards = [
-    { label: "north star", value: fmt(m.northStar) },
-    { label: "engagement", value: fmt(m.engagement) },
-    { label: "velocity", value: m.velocity.toFixed(1) },
-    { label: "features shipped", value: fmt(m.featureCount) },
-    { label: "sprints shipped", value: fmt(m.sprintCount) },
-    { label: "tests passing", value: `${m.testsPassing}%` },
-    { label: "nps lift index", value: `+${m.npsLiftIndex}` },
-    { label: "active users", value: "1" },
-  ];
+  const delta = m.velocity - PRIOR_SPRINT_VELOCITY;
 
   return (
     <main className="pad">
       <p className="label rise">welcome back, {user.name}</p>
-      <h1 className="declarative rise" style={{ marginTop: "0.5rem" }}>
-        the product
-      </h1>
-      <p
-        className="prose rise"
-        style={{ marginTop: "1.25rem", color: "var(--ink-30)" }}
-      >
-        you are looking at the engagement dashboard. engagement with the
-        engagement dashboard is reflected below. the north star is north-star
-        aligned.
-      </p>
 
-      <div className="metrics rise" style={{ marginTop: "2.5rem" }}>
-        {cards.map((c) => (
-          <div className="metric" key={c.label}>
-            <span className="label">{c.label}</span>
-            <span className="value mono">{c.value}</span>
-          </div>
-        ))}
-      </div>
+      <DashboardHero
+        northStarValue={m.northStar}
+        npsLiftIndex={m.npsLiftIndex}
+        featuresShipped={m.featureCount}
+      />
+
+      <section
+        className={`${styles.tileGrid} rise`}
+        aria-label="metric tiles"
+        data-testid="tile-grid"
+      >
+        <MetricTile
+          label="North Star"
+          value={fmt(m.northStar)}
+          descriptor="monotonic"
+        />
+        <MetricTile
+          label="Engagement"
+          value={fmt(m.engagement)}
+          descriptor="dashboard hits"
+        />
+        <MetricTile
+          label="Velocity"
+          value={m.velocity.toFixed(1)}
+          descriptor="tickets per sprint"
+        />
+        <MetricTile
+          label="Features Shipped"
+          value={fmt(m.featureCount)}
+          descriptor="features shipped"
+        />
+        <MetricTile
+          label="Sprints Shipped"
+          value={fmt(m.sprintCount)}
+          descriptor="sprints shipped"
+        />
+        <MetricTile
+          label="Tests Passing"
+          value={`${m.testsPassing}%`}
+          descriptor="tests passing"
+        />
+        <MetricTile
+          label="Engagement with the Engagement Dashboard"
+          value={fmt(m.engagement)}
+          descriptor="hits on this dashboard"
+          variant="engagement"
+        />
+      </section>
+
+      <VelocityPanel currentVelocity={m.velocity} delta={delta} />
     </main>
   );
 }
