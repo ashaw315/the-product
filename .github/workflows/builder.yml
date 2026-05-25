@@ -35,10 +35,10 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           prompt: ${{ steps.fetch.outputs.prompt }}
-          model: claude-sonnet-4-6 # ~5x cheaper than Opus; plenty for these features
-          # bypass = hands-off in CI (no human to approve prompts). Safe here:
-          # isolated runner, and the CI guard still blocks spine/lib edits on the PR.
-          claude_args: "--permission-mode bypassPermissions"
+          # Both model and permissions go through claude_args — the action has no
+          # top-level `model` input. bypass = hands-off in CI (no human approver);
+          # safe here: isolated runner, and the CI guard still gates the PR.
+          claude_args: "--model claude-sonnet-4-6 --permission-mode bypassPermissions"
 
       # A run that completes but pushes no branch built nothing. Treat that as a
       # failure (so it stays red and retries) instead of silently marking it built.
