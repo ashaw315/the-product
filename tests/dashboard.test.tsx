@@ -2,6 +2,13 @@ import { describe, it, expect, vi } from "vitest";
 import { renderToString } from "react-dom/server";
 import { createElement } from "react";
 
+// OrientationBanner is an async server component; mock it for this test suite
+// so renderToString doesn't encounter nested async suspension.
+vi.mock("../app/components/OrientationBanner", () => ({
+  OrientationBanner: () => null,
+  default: () => null,
+}));
+
 // Mock the metric primitives. Tests must never hit a real database.
 vi.mock("@/lib/product-metrics", () => ({
   getUser: () => ({ id: "the-user", name: "the user", plan: "the plan" }),

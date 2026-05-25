@@ -213,3 +213,114 @@
     gap: 1.25rem;
   }
 }
+
+/* PM-2-1: Orientation Banner */
+.orientationBanner {
+  margin-top: 1.5rem;
+  padding: 1rem 1.5rem;
+  border: 1.5px solid var(--ink);
+  border-left: 4px solid var(--ink);
+  background: transparent;
+}
+
+.orientationBanner p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+/* PM-2-3: Tile interactive states */
+.tileInteractive {
+  cursor: pointer;
+  transition: transform 150ms ease, border-color 150ms ease;
+}
+
+.tileInteractive:hover {
+  transform: scale(1.02);
+  border-color: var(--blue);
+}
+
+.tileInteractive:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: -2px;
+}
+
+.tileInteractive:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: -2px;
+}
+
+/* PM-2-4: Hero interactive wrapper (no tile border/padding override) */
+.heroTileWrapper {
+  cursor: pointer;
+  transition: transform 150ms ease;
+  display: block;
+}
+
+.heroTileWrapper:hover {
+  transform: scale(1.02);
+}
+
+.heroTileWrapper:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
+}
+
+.heroTileWrapper:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
+}
+
+/* PM-2-2: Metric Detail Drawer */
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(420px, 90vw);
+  height: 100vh;
+  background: var(--paper);
+  border-left: 1.5px solid var(--ink);
+  transform: translateX(100%);
+  transition: transform 250ms ease;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  gap: 1.5rem;
+}
+
+.drawerOpen {
+  transform: translateX(0);
+}
+
+.drawerClose {
+  align-self: flex-end;
+  background: transparent;
+  border: 1.5px solid var(--ink);
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+}
+
+.drawerClose:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.drawerContent {
+  flex: 1;
+}
+
+.drawerNarrative {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 52ch;
+}
