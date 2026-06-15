@@ -213,3 +213,112 @@
     gap: 1.25rem;
   }
 }
+
+/* Discovery Ribbon */
+
+.discoveryRibbon {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1.5px solid var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.ribbonContent {
+  flex: 1;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  min-width: 0;
+  align-items: baseline;
+}
+
+.ribbonName {
+  font-weight: 600;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.ribbonDesc {
+  color: var(--ink-30);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+.ribbonNav {
+  background: none;
+  border: 1.5px solid var(--ink);
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.85rem;
+  color: var(--ink);
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+/* Guided Orientation Banner */
+
+.banner {
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--ink);
+  margin-bottom: 1.25rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.bannerQuieted {
+  opacity: 0.45;
+}
+
+.bannerLink {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: inherit;
+}
+
+.bannerSep {
+  color: var(--ink-30);
+}
+
+/* Return Beacon */
+
+.returnBeacon {
+  padding: 1rem 0 1.5rem;
+  border-bottom: 1.5px solid var(--ink);
+  margin-bottom: 1.5rem;
+}
+
+.returnBeaconValue {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  margin-top: 0.4rem;
+}
+
+/* Anticipation Layer */
+
+.anticipationLayer {
+  margin-top: 2rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--ink);
+}
+
+/* Depth Indicator */
+
+.depthIndicator {
+  margin-top: 1.5rem;
+  padding-bottom: 2rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-30);
+}
