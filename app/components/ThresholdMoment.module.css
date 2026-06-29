@@ -1,0 +1,26 @@
+.container {
+  border: 1.5px solid var(--ink);
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.metrics {
+  display: flex;
+  gap: 3rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.metricItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.value {
+  font-family: var(--font-display), "Helvetica Neue", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}

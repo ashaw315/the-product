@@ -2,6 +2,10 @@ import { getAllMetrics, getUser } from "@/lib/product-metrics";
 import { DashboardHero } from "./components/DashboardHero";
 import { MetricTile } from "./components/MetricTile";
 import { VelocityPanel } from "./components/VelocityPanel";
+import ContinuitySignalBanner from "./components/ContinuitySignalBanner";
+import AmbientOrientationSignal from "./components/AmbientOrientationSignal";
+import DiscoveryRibbon from "./components/DiscoveryRibbon";
+import ThresholdMoment from "./components/ThresholdMoment";
 import styles from "./components/dashboard.module.css";
 
 export const dynamic = "force-dynamic";
@@ -16,8 +20,16 @@ export default async function Surface() {
   const m = await getAllMetrics();
   const delta = m.velocity - PRIOR_SPRINT_VELOCITY;
 
+  const continuityBanner = await ContinuitySignalBanner();
+  const orientationSignal = await AmbientOrientationSignal();
+  const thresholdMoment = await ThresholdMoment();
+
   return (
     <main className="pad">
+      {continuityBanner}
+
+      {orientationSignal}
+
       <p className="label rise">welcome back, {user.name}</p>
 
       <DashboardHero
@@ -70,6 +82,10 @@ export default async function Surface() {
       </section>
 
       <VelocityPanel currentVelocity={m.velocity} delta={delta} />
+
+      <DiscoveryRibbon />
+
+      {thresholdMoment}
     </main>
   );
 }
