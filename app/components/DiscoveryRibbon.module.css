@@ -1,0 +1,17 @@
+.ribbon {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  padding: 1rem 0;
+  border-top: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.ribbon a {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
