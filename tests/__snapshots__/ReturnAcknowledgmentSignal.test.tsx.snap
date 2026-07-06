@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ReturnAcknowledgmentSignal (PM-8-2) > snapshot confirms renders without crashing with arbitrary numeric props 1`] = `"<div data-testid="return-acknowledgment-signal"><p class="prose">you have returned. <!-- -->99<!-- --> sprints. <!-- -->500<!-- --> features. the product continues.</p></div>"`;
