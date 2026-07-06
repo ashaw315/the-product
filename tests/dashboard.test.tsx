@@ -2,6 +2,11 @@ import { describe, it, expect, vi } from "vitest";
 import { renderToString } from "react-dom/server";
 import { createElement } from "react";
 
+vi.mock("next/link", () => ({
+  default: ({ href, children }: { href: string; children: React.ReactNode }) =>
+    createElement("a", { href }, children),
+}));
+
 // Mock the metric primitives. Tests must never hit a real database.
 vi.mock("@/lib/product-metrics", () => ({
   getUser: () => ({ id: "the-user", name: "the user", plan: "the plan" }),
