@@ -1,7 +1,17 @@
+// Dashboard render order:
+//   [above-fold]  welcome label → DashboardHero → DepthAcknowledgmentBanner → ActionInvitationLayer
+//   [metric grid] tile grid
+//   [below-fold]  VelocityPanel → DiscoveryRibbon → LatentEngagementIndicator → ClickabilitySignal
+
 import { getAllMetrics, getUser } from "@/lib/product-metrics";
 import { DashboardHero } from "./components/DashboardHero";
 import { MetricTile } from "./components/MetricTile";
 import { VelocityPanel } from "./components/VelocityPanel";
+import { DepthAcknowledgmentBanner } from "./components/DepthAcknowledgmentBanner";
+import { ActionInvitationLayer } from "./components/ActionInvitationLayer";
+import { DiscoveryRibbon } from "./components/DiscoveryRibbon";
+import { LatentEngagementIndicator } from "./components/LatentEngagementIndicator";
+import { ClickabilitySignal } from "./components/ClickabilitySignal";
 import styles from "./components/dashboard.module.css";
 
 export const dynamic = "force-dynamic";
@@ -16,8 +26,17 @@ export default async function Surface() {
   const m = await getAllMetrics();
   const delta = m.velocity - PRIOR_SPRINT_VELOCITY;
 
+  // Pre-resolve async server components so renderToString sees a synchronous tree.
+  const [actionInvitationLayerEl, latentEngagementEl, clickabilitySignalEl] =
+    await Promise.all([
+      ActionInvitationLayer(),
+      LatentEngagementIndicator(),
+      ClickabilitySignal(),
+    ]);
+
   return (
     <main className="pad">
+      {/* above-fold */}
       <p className="label rise">welcome back, {user.name}</p>
 
       <DashboardHero
@@ -26,6 +45,11 @@ export default async function Surface() {
         featuresShipped={m.featureCount}
       />
 
+      <DepthAcknowledgmentBanner />
+
+      {actionInvitationLayerEl}
+
+      {/* metric grid */}
       <section
         className={`${styles.tileGrid} rise`}
         aria-label="metric tiles"
@@ -69,7 +93,14 @@ export default async function Surface() {
         />
       </section>
 
+      {/* below-fold */}
       <VelocityPanel currentVelocity={m.velocity} delta={delta} />
+
+      <DiscoveryRibbon />
+
+      {latentEngagementEl}
+
+      {clickabilitySignalEl}
     </main>
   );
 }
