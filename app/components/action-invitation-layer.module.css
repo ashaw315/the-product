@@ -1,0 +1,46 @@
+.invitation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1.25rem;
+  border: 1.5px solid var(--ink);
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.invitation:focus-visible {
+  outline: 2.5px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.invitation:hover {
+  background: var(--ink-12);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-left: 1.5px solid var(--ink);
+  border-top: 1.5px solid var(--ink);
+  margin-top: 1.5rem;
+}
+
+.invitation {
+  border-right: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  border-top: none;
+  border-left: none;
+}
+
+@media (min-width: 641px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
