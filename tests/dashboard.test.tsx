@@ -23,6 +23,24 @@ vi.mock("@/lib/product-metrics", () => ({
   }),
 }));
 
+// Mock async sub-components so renderToString can handle the full page tree.
+vi.mock("../app/components/DepthAcknowledgmentBanner", () => ({
+  DepthAcknowledgmentBanner: () => createElement("div", { "data-mock": "depth-banner" }),
+  default: () => createElement("div", { "data-mock": "depth-banner" }),
+}));
+vi.mock("../app/components/ActionInvitationLayer", () => ({
+  ActionInvitationLayer: () => createElement("div", { "data-mock": "action-invitation-layer" }),
+  default: () => createElement("div", { "data-mock": "action-invitation-layer" }),
+}));
+vi.mock("../app/components/ClickabilitySignal", () => ({
+  ClickabilitySignal: () => createElement("div", { "data-mock": "clickability-signal" }),
+  default: () => createElement("div", { "data-mock": "clickability-signal" }),
+}));
+vi.mock("../app/components/HabitAcknowledgmentComponent", () => ({
+  HabitAcknowledgmentComponent: () => createElement("div", { "data-mock": "habit-acknowledgment" }),
+  default: () => createElement("div", { "data-mock": "habit-acknowledgment" }),
+}));
+
 import Surface from "../app/page";
 import { MetricTile } from "../app/components/MetricTile";
 import { DashboardHero } from "../app/components/DashboardHero";
